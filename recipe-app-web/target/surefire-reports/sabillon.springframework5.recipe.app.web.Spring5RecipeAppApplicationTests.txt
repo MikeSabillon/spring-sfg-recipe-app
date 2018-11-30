@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: sabillon.springframework5.recipe.app.web.Spring5RecipeAppApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.328 s - in sabillon.springframework5.recipe.app.web.Spring5RecipeAppApplicationTests
