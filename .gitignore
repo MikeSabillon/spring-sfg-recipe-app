@@ -1,4 +1,6 @@
 /target/
+/recipe-app-data/target/
+/recipe-app-web/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
