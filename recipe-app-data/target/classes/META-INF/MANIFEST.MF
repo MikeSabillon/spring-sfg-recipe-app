@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: recipe-app-data
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: miguel.sabillon
+Implementation-Vendor-Id: sabillon.springframework5
+Build-Jdk: 1.8.0_152
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spring5-recipe-app/recipe-app-data
+Created-By: Maven Integration for Eclipse
+
