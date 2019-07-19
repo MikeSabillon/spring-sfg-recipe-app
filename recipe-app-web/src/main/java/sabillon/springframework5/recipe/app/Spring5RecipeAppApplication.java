@@ -1,4 +1,4 @@
-package sabillon.springframework5.spring5recipeapp;
+package sabillon.springframework5.recipe.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

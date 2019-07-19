@@ -1,4 +1,4 @@
-package sabillon.springframework5.spring5recipeapp;
+package sabillon.springframework5.recipe.app.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
