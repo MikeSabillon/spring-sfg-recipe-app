@@ -1,0 +1,12 @@
+sabillon/springframework5/recipe/app/data/domain/Category.class
+sabillon/springframework5/recipe/app/data/services/RecipeService.class
+sabillon/springframework5/recipe/app/data/bootstrap/RecipeBootstrap.class
+sabillon/springframework5/recipe/app/data/domain/Notes.class
+sabillon/springframework5/recipe/app/data/repositories/UnitOfMeasureRepository.class
+sabillon/springframework5/recipe/app/data/domain/Difficulty.class
+sabillon/springframework5/recipe/app/data/repositories/RecipeRepository.class
+sabillon/springframework5/recipe/app/data/domain/Ingredient.class
+sabillon/springframework5/recipe/app/data/domain/Recipe.class
+sabillon/springframework5/recipe/app/data/domain/UnitOfMeasure.class
+sabillon/springframework5/recipe/app/data/services/impl/RecipeServiceImpl.class
+sabillon/springframework5/recipe/app/data/repositories/CategoryRepository.class
