@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import sabillon.springframework5.recipe.app.data.domain.Category;
@@ -55,6 +56,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	 *
 	 * @param event the event
 	 */
+	@Transactional
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		log.debug("Loading bootstrap data");
