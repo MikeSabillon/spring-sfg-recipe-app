@@ -1,7 +1,10 @@
 package sabillon.springframework5.recipe.app.web.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import sabillon.springframework5.recipe.app.data.services.RecipeService;
 
 /**
  * The type Index controller.
@@ -11,14 +14,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    /**
-     * Gets index page.
-     *
-     * @return the index page
-     */
-    @GetMapping({"", "/home", "/", "/index"})
-    public String getIndexPage() {
-        return "index";
-    }
+	/** The recipe service. */
+	private final RecipeService recipeService;
+
+	/**
+	 * Instantiates a new index controller.
+	 *
+	 * @param recipeService the recipe service
+	 */
+	public IndexController(RecipeService recipeService) {
+		this.recipeService = recipeService;
+	}
+
+	/**
+	 * Gets the index page.
+	 *
+	 * @param model the model
+	 * @return the index page
+	 */
+	@GetMapping({ "", "/", "/index" })
+	public String getIndexPage(Model model) {
+
+		model.addAttribute("recipes", recipeService.getRecipes());
+
+		return "index";
+	}
 
 }
