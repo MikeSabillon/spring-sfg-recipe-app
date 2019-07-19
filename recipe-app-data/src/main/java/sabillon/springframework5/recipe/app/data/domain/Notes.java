@@ -7,9 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * The Class Notes.
  */
+@Data
+@EqualsAndHashCode(exclude = { "recipe" })
 @Entity
 public class Notes {
 
@@ -26,57 +31,4 @@ public class Notes {
 	@Lob
 	private String recipeNotes;
 
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * Sets the id.
-	 *
-	 * @param id the new id
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the recipe.
-	 *
-	 * @return the recipe
-	 */
-	public Recipe getRecipe() {
-		return recipe;
-	}
-
-	/**
-	 * Sets the recipe.
-	 *
-	 * @param recipe the new recipe
-	 */
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
-
-	/**
-	 * Gets the recipe notes.
-	 *
-	 * @return the recipe notes
-	 */
-	public String getRecipeNotes() {
-		return recipeNotes;
-	}
-
-	/**
-	 * Sets the recipe notes.
-	 *
-	 * @param recipeNotes the new recipe notes
-	 */
-	public void setRecipeNotes(String recipeNotes) {
-		this.recipeNotes = recipeNotes;
-	}
 }

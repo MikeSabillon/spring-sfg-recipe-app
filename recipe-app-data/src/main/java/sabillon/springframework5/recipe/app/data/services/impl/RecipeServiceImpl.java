@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import sabillon.springframework5.recipe.app.data.domain.Recipe;
 import sabillon.springframework5.recipe.app.data.repositories.RecipeRepository;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
@@ -12,6 +13,7 @@ import sabillon.springframework5.recipe.app.data.services.RecipeService;
 /**
  * The Class RecipeServiceImpl.
  */
+@Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
@@ -34,6 +36,7 @@ public class RecipeServiceImpl implements RecipeService {
 	 */
 	@Override
 	public Set<Recipe> getRecipes() {
+		log.debug("Getting recipes");
 		Set<Recipe> recipeSet = new HashSet<>();
 		recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
 		return recipeSet;
