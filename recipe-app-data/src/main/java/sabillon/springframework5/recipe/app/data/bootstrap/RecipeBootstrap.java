@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import sabillon.springframework5.recipe.app.data.domain.Category;
-import sabillon.springframework5.recipe.app.data.domain.Ingredient;
-import sabillon.springframework5.recipe.app.data.domain.Notes;
-import sabillon.springframework5.recipe.app.data.domain.Recipe;
-import sabillon.springframework5.recipe.app.data.domain.UnitOfMeasure;
 import sabillon.springframework5.recipe.app.data.enums.Difficulty;
+import sabillon.springframework5.recipe.app.data.models.Category;
+import sabillon.springframework5.recipe.app.data.models.Ingredient;
+import sabillon.springframework5.recipe.app.data.models.Notes;
+import sabillon.springframework5.recipe.app.data.models.Recipe;
+import sabillon.springframework5.recipe.app.data.models.UnitOfMeasure;
 import sabillon.springframework5.recipe.app.data.repositories.CategoryRepository;
 import sabillon.springframework5.recipe.app.data.repositories.RecipeRepository;
 import sabillon.springframework5.recipe.app.data.repositories.UnitOfMeasureRepository;

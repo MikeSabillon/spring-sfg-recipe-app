@@ -1,4 +1,4 @@
-package sabillon.springframework5.recipe.app.data.domain;
+package sabillon.springframework5.recipe.app.data.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

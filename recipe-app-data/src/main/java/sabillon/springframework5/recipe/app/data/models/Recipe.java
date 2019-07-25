@@ -1,4 +1,4 @@
-package sabillon.springframework5.recipe.app.data.domain;
+package sabillon.springframework5.recipe.app.data.models;
 
 import java.util.HashSet;
 import java.util.Set;

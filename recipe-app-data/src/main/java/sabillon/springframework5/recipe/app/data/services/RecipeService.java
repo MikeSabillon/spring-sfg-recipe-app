@@ -2,7 +2,7 @@ package sabillon.springframework5.recipe.app.data.services;
 
 import java.util.Set;
 
-import sabillon.springframework5.recipe.app.data.domain.Recipe;
+import sabillon.springframework5.recipe.app.data.models.Recipe;
 
 /**
  * The Interface RecipeService.

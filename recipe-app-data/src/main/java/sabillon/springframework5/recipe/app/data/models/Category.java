@@ -1,18 +1,23 @@
-package sabillon.springframework5.recipe.app.data.domain;
+package sabillon.springframework5.recipe.app.data.models;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * The Class UnitOfMeasure.
+ * The Class Category.
  */
 @Data
+@EqualsAndHashCode(exclude = { "recipes" })
 @Entity
-public class UnitOfMeasure {
+public class Category {
 
 	/** The id. */
 	@Id
@@ -21,5 +26,9 @@ public class UnitOfMeasure {
 
 	/** The description. */
 	private String description;
+
+	/** The recipes. */
+	@ManyToMany(mappedBy = "categories")
+	private Set<Recipe> recipes;
 
 }

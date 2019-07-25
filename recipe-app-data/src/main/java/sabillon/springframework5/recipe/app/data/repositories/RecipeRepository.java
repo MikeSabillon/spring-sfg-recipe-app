@@ -3,7 +3,7 @@ package sabillon.springframework5.recipe.app.data.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import sabillon.springframework5.recipe.app.data.domain.Recipe;
+import sabillon.springframework5.recipe.app.data.models.Recipe;
 
 /**
  * The Interface RecipeRepository.

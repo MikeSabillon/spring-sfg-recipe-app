@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import sabillon.springframework5.recipe.app.data.domain.Recipe;
+import sabillon.springframework5.recipe.app.data.models.Recipe;
 import sabillon.springframework5.recipe.app.data.repositories.RecipeRepository;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
 

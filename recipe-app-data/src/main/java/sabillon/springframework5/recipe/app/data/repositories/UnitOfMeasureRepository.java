@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import sabillon.springframework5.recipe.app.data.domain.UnitOfMeasure;
+import sabillon.springframework5.recipe.app.data.models.UnitOfMeasure;
 
 /**
  * The Interface UnitOfMeasureRepository.
