@@ -15,4 +15,12 @@ public interface RecipeService {
 	 * @return the recipes
 	 */
 	Set<Recipe> getRecipes();
+
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the recipe
+	 */
+	Recipe findById(Long id);
 }
