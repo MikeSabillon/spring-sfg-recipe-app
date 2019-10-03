@@ -34,12 +34,25 @@ public class UnitOfMeasureRepositoryIT {
 	}
 
 	/**
-	 * Test.
+	 * Find by description.
+	 *
+	 * @throws Exception the exception
 	 */
 	@Test
-	public void test() {
-		Optional<UnitOfMeasure> uomOptional = this.unitOfMeasureRepository.findByDescription("Teaspoon");
+	public void findByDescription() throws Exception {
+		Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 		assertEquals("Teaspoon", uomOptional.get().getDescription());
+	}
+
+	/**
+	 * Find by description cup.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void findByDescriptionCup() throws Exception {
+		Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Cup");
+		assertEquals("Cup", uomOptional.get().getDescription());
 	}
 
 }

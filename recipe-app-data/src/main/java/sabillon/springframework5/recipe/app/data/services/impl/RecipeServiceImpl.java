@@ -1,6 +1,7 @@
 package sabillon.springframework5.recipe.app.data.services.impl;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -41,4 +42,17 @@ public class RecipeServiceImpl implements RecipeService {
 		recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
 		return recipeSet;
 	}
+
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the recipe
+	 */
+	@Override
+	public Recipe findById(Long id) {
+		Optional<Recipe> recipe = this.recipeRepository.findById(id);
+		return recipe.isPresent() ? recipe.get() : null;
+	}
+
 }
