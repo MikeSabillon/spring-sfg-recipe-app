@@ -2,6 +2,7 @@ package sabillon.springframework5.recipe.app.web.controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -21,11 +22,15 @@ import sabillon.springframework5.recipe.app.data.services.RecipeService;
  */
 public class RecipeControllerTest {
 
-	/** The recipe service. */
+	/**
+	 * The recipe service.
+	 */
 	@Mock
 	private RecipeService recipeService;
 
-	/** The controller. */
+	/**
+	 * The controller.
+	 */
 	private RecipeController controller;
 
 	/**
@@ -51,7 +56,8 @@ public class RecipeControllerTest {
 
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 		when(recipeService.findById(Mockito.anyLong())).thenReturn(recipe);
-		mockMvc.perform(get("/recipe/show/1")).andExpect(status().isOk()).andExpect(view().name("recipe/show"));
+		mockMvc.perform(get("/recipe/show/1")).andExpect(status().isOk()).andExpect(view().name("recipe/show"))
+				.andExpect(model().attributeExists("recipe"));
 	}
 
 }
