@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
 
@@ -12,21 +13,13 @@ import sabillon.springframework5.recipe.app.data.services.RecipeService;
  *
  * @author Miguel Sabillon on 12/13/2018
  */
+@RequiredArgsConstructor
 @Slf4j
 @Controller
 public class IndexController {
 
 	/** The recipe service. */
 	private final RecipeService recipeService;
-
-	/**
-	 * Instantiates a new index controller.
-	 *
-	 * @param recipeService the recipe service
-	 */
-	public IndexController(RecipeService recipeService) {
-		this.recipeService = recipeService;
-	}
 
 	/**
 	 * Gets the index page.
