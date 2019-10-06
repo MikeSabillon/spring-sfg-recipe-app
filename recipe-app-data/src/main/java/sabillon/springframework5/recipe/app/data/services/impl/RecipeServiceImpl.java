@@ -4,9 +4,15 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import sabillon.springframework5.recipe.app.data.commands.RecipeCommand;
+import sabillon.springframework5.recipe.app.data.converters.RecipeCommandToRecipe;
+import sabillon.springframework5.recipe.app.data.converters.RecipeToRecipeCommand;
 import sabillon.springframework5.recipe.app.data.models.Recipe;
 import sabillon.springframework5.recipe.app.data.repositories.RecipeRepository;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
@@ -14,6 +20,7 @@ import sabillon.springframework5.recipe.app.data.services.RecipeService;
 /**
  * The Class RecipeServiceImpl.
  */
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -21,14 +28,11 @@ public class RecipeServiceImpl implements RecipeService {
 	/** The recipe repository. */
 	private final RecipeRepository recipeRepository;
 
-	/**
-	 * Instantiates a new recipe service impl.
-	 *
-	 * @param recipeRepository the recipe repository
-	 */
-	public RecipeServiceImpl(RecipeRepository recipeRepository) {
-		this.recipeRepository = recipeRepository;
-	}
+	/** The recipe command to recipe. */
+	private final RecipeCommandToRecipe recipeCommandToRecipe;
+
+	/** The recipe to recipe command. */
+	private final RecipeToRecipeCommand recipeToRecipeCommand;
 
 	/**
 	 * Gets the recipes.
@@ -53,6 +57,21 @@ public class RecipeServiceImpl implements RecipeService {
 	public Recipe findById(Long id) {
 		Optional<Recipe> recipe = this.recipeRepository.findById(id);
 		return recipe.isPresent() ? recipe.get() : null;
+	}
+
+	/**
+	 * Save recipe command.
+	 *
+	 * @param command the command
+	 * @return the recipe command
+	 */
+	@Override
+	@Transactional
+	public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+		Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+		Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+		log.debug("Saved RecipeId:" + savedRecipe.getId());
+		return recipeToRecipeCommand.convert(savedRecipe);
 	}
 
 }

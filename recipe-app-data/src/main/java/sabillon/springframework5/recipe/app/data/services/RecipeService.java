@@ -2,6 +2,7 @@ package sabillon.springframework5.recipe.app.data.services;
 
 import java.util.Set;
 
+import sabillon.springframework5.recipe.app.data.commands.RecipeCommand;
 import sabillon.springframework5.recipe.app.data.models.Recipe;
 
 /**
@@ -23,4 +24,12 @@ public interface RecipeService {
 	 * @return the recipe
 	 */
 	Recipe findById(Long id);
+
+	/**
+	 * Save recipe command.
+	 *
+	 * @param command the command
+	 * @return the recipe command
+	 */
+	RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
