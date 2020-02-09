@@ -1,5 +1,6 @@
 package sabillon.springframework5.recipe.app.data.bootstrap;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,6 +22,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     /**
@@ -37,20 +39,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
      * The unit of measure repository.
      */
     private final UnitOfMeasureRepository unitOfMeasureRepository;
-
-    /**
-     * Instantiates a new recipe bootstrap.
-     *
-     * @param categoryRepository      the category repository
-     * @param recipeRepository        the recipe repository
-     * @param unitOfMeasureRepository the unit of measure repository
-     */
-    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository,
-                           UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.recipeRepository = recipeRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-    }
 
     /**
      * On application event.
