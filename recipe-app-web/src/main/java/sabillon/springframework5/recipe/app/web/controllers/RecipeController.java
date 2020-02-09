@@ -13,8 +13,8 @@ import sabillon.springframework5.recipe.app.data.services.RecipeService;
 /**
  * The Class RecipeController.
  */
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class RecipeController {
 
     /**
@@ -70,6 +70,18 @@ public class RecipeController {
     public String saveOrUpdate(@ModelAttribute RecipeCommand command) {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
         return "redirect:/recipe/".concat(savedCommand.getId().toString()).concat("/show");
+    }
+
+    /**
+     * Delete by id string.
+     *
+     * @param id the id
+     * @return the string
+     */
+    @GetMapping("recipe/{id}/delete")
+    public String deleteById(@PathVariable String id) {
+        recipeService.deleteById(Long.valueOf(id));
+        return "redirect:/";
     }
 
 }

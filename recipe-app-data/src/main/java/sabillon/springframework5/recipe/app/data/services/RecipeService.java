@@ -6,19 +6,19 @@ import sabillon.springframework5.recipe.app.data.models.Recipe;
 import java.util.Set;
 
 /**
- * The Interface RecipeService.
+ * The interface Recipe service.
  */
 public interface RecipeService {
 
     /**
-     * Gets the recipes.
+     * Gets recipes.
      *
      * @return the recipes
      */
     Set<Recipe> getRecipes();
 
     /**
-     * Find by id.
+     * Find by id recipe.
      *
      * @param id the id
      * @return the recipe
@@ -26,7 +26,7 @@ public interface RecipeService {
     Recipe findById(Long id);
 
     /**
-     * Save recipe command.
+     * Save recipe command recipe command.
      *
      * @param command the command
      * @return the recipe command
@@ -41,5 +41,12 @@ public interface RecipeService {
      * @return the recipe command
      */
     RecipeCommand findCommandById(Long id);
+
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
+    void deleteById(Long id);
 
 }
