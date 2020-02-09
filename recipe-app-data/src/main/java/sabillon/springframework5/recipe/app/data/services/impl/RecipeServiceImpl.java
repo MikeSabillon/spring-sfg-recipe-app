@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The Class RecipeServiceImpl.
+ * The type Recipe service.
  */
 @RequiredArgsConstructor
 @Slf4j
@@ -24,17 +24,17 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     /**
-     * The recipe repository.
+     * The Recipe repository.
      */
     private final RecipeRepository recipeRepository;
 
     /**
-     * The recipe command to recipe.
+     * The Recipe command to recipe.
      */
     private final RecipeCommandToRecipe recipeCommandToRecipe;
 
     /**
-     * The recipe to recipe command.
+     * The Recipe to recipe command.
      */
     private final RecipeToRecipeCommand recipeToRecipeCommand;
 
@@ -78,10 +78,25 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeToRecipeCommand.convert(savedRecipe);
     }
 
+    /**
+     * Find command by id recipe command.
+     *
+     * @param l the l
+     * @return the recipe command
+     */
     @Override
     @Transactional
     public RecipeCommand findCommandById(Long l) {
         return recipeToRecipeCommand.convert(findById(l));
     }
 
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
+    @Override
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
+    }
 }
