@@ -2,6 +2,7 @@ package sabillon.springframework5.recipe.app.web.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
@@ -19,38 +20,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * The Class RecipeControllerTest.
+ * The type Recipe controller test.
  */
 public class RecipeControllerTest {
 
-    /**
-     * The recipe service.
-     */
     @Mock
     private RecipeService recipeService;
 
-    /**
-     * The controller.
-     */
-    private RecipeController controller;
+    @InjectMocks
+    private RecipeController recipeController;
 
-    /**
-     * The Mock mvc.
-     */
     private MockMvc mockMvc;
 
     /**
-     * Sets the up.
+     * Sets up.
      *
      * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
     }
-
 
     /**
      * Test get recipe.

@@ -1,74 +1,48 @@
 package sabillon.springframework5.recipe.app.data.converters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import sabillon.springframework5.recipe.app.data.commands.UnitOfMeasureCommand;
 import sabillon.springframework5.recipe.app.data.models.UnitOfMeasure;
 
-/**
- * The Class UnitOfMeasureToUnitOfMeasureCommandTest.
- */
+import static org.junit.Assert.*;
+
 public class UnitOfMeasureToUnitOfMeasureCommandTest {
 
-	/** The Constant DESCRIPTION. */
-	public static final String DESCRIPTION = "description";
+    private static final String DESCRIPTION = "description";
 
-	/** The Constant LONG_VALUE. */
-	public static final Long LONG_VALUE = 1L;
+    private static final Long LONG_VALUE = 1L;
 
-	/** The converter. */
-	UnitOfMeasureToUnitOfMeasureCommand converter;
+    private UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand;
 
-	/**
-	 * Sets the up.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		converter = new UnitOfMeasureToUnitOfMeasureCommand();
-	}
+    @Before
+    public void setUp() {
+        unitOfMeasureToUnitOfMeasureCommand = new UnitOfMeasureToUnitOfMeasureCommand();
+    }
 
-	/**
-	 * Test null object convert.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testNullObjectConvert() throws Exception {
-		assertNull(converter.convert(null));
-	}
+    @Test
+    public void testNullObjectConvert() {
+        assertNull(unitOfMeasureToUnitOfMeasureCommand.convert(null));
+    }
 
-	/**
-	 * Test empty obj.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testEmptyObj() throws Exception {
-		assertNotNull(converter.convert(new UnitOfMeasure()));
-	}
+    @Test
+    public void testEmptyObj() {
+        assertNotNull(unitOfMeasureToUnitOfMeasureCommand.convert(UnitOfMeasure.builder().build()));
+    }
 
-	/**
-	 * Convert.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void convert() throws Exception {
-		UnitOfMeasure uom = new UnitOfMeasure();
-		uom.setId(LONG_VALUE);
-		uom.setDescription(DESCRIPTION);
+    @Test
+    public void convert() {
+        UnitOfMeasure uom = UnitOfMeasure
+                .builder()
+                .id(LONG_VALUE)
+                .description(DESCRIPTION)
+                .build();
 
-		UnitOfMeasureCommand uomc = converter.convert(uom);
+        UnitOfMeasureCommand uomc = unitOfMeasureToUnitOfMeasureCommand.convert(uom);
 
-		assertEquals(LONG_VALUE, uomc.getId());
-		assertEquals(DESCRIPTION, uomc.getDescription());
-	}
+        assertNotNull(uomc);
+        assertEquals(LONG_VALUE, uomc.getId());
+        assertEquals(DESCRIPTION, uomc.getDescription());
+    }
 
 }

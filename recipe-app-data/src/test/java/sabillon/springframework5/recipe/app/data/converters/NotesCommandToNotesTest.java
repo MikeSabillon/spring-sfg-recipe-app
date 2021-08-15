@@ -1,75 +1,69 @@
 package sabillon.springframework5.recipe.app.data.converters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import sabillon.springframework5.recipe.app.data.commands.NotesCommand;
 import sabillon.springframework5.recipe.app.data.models.Notes;
 
+import static org.junit.Assert.*;
+
 /**
- * The Class NotesCommandToNotesTest.
+ * The type Notes command to notes test.
  */
 public class NotesCommandToNotesTest {
 
-	/** The Constant ID_VALUE. */
-	public static final Long ID_VALUE = 1L;
+    /**
+     * The constant ID_VALUE.
+     */
+    public static final Long ID_VALUE = 1L;
 
-	/** The Constant RECIPE_NOTES. */
-	public static final String RECIPE_NOTES = "Notes";
+    /**
+     * The constant RECIPE_NOTES.
+     */
+    public static final String RECIPE_NOTES = "Notes";
 
-	/** The converter. */
-	NotesCommandToNotes converter;
+    private NotesCommandToNotes notesCommandToNotes;
 
-	/**
-	 * Sets the up.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		converter = new NotesCommandToNotes();
-	}
+    /**
+     * Sets up.
+     */
+    @Before
+    public void setUp() {
+        notesCommandToNotes = new NotesCommandToNotes();
+    }
 
-	/**
-	 * Test null parameter.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testNullParameter() throws Exception {
-		assertNull(converter.convert(null));
-	}
+    /**
+     * Test null parameter.
+     */
+    @Test
+    public void testNullParameter() {
+        assertNull(notesCommandToNotes.convert(null));
+    }
 
-	/**
-	 * Test empty object.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testEmptyObject() throws Exception {
-		assertNotNull(converter.convert(new NotesCommand()));
-	}
+    /**
+     * Test empty object.
+     */
+    @Test
+    public void testEmptyObject() {
+        assertNotNull(notesCommandToNotes.convert(NotesCommand.builder().build()));
+    }
 
-	/**
-	 * Convert.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void convert() throws Exception {
-		NotesCommand notesCommand = new NotesCommand();
-		notesCommand.setId(ID_VALUE);
-		notesCommand.setRecipeNotes(RECIPE_NOTES);
+    /**
+     * Convert.
+     */
+    @Test
+    public void convert() {
+        NotesCommand notesCommand = NotesCommand
+                .builder()
+                .id(ID_VALUE)
+                .recipeNotes(RECIPE_NOTES)
+                .build();
 
-		Notes notes = converter.convert(notesCommand);
+        Notes notes = notesCommandToNotes.convert(notesCommand);
 
-		assertNotNull(notes);
-		assertEquals(ID_VALUE, notes.getId());
-		assertEquals(RECIPE_NOTES, notes.getRecipeNotes());
-	}
+        assertNotNull(notes);
+        assertEquals(ID_VALUE, notes.getId());
+        assertEquals(RECIPE_NOTES, notes.getRecipeNotes());
+    }
 
 }

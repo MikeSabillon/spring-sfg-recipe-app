@@ -2,11 +2,14 @@ package sabillon.springframework5.recipe.app.web.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import sabillon.springframework5.recipe.app.data.commands.IngredientCommand;
 import sabillon.springframework5.recipe.app.data.commands.RecipeCommand;
+import sabillon.springframework5.recipe.app.data.services.IngredientService;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
 
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -19,21 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class IngredientControllerTest {
 
-    /**
-     * The Recipe service.
-     */
     @Mock
-    RecipeService recipeService;
-
-    /**
-     * The Controller.
-     */
-    IngredientController controller;
-
-    /**
-     * The Mock mvc.
-     */
-    MockMvc mockMvc;
+    private IngredientService ingredientService;
+    @Mock
+    private RecipeService recipeService;
+    @InjectMocks
+    private IngredientController ingredientController;
+    private MockMvc mockMvc;
 
     /**
      * Sets up.
@@ -43,9 +38,7 @@ public class IngredientControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        controller = new IngredientController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
     }
 
     /**
@@ -67,6 +60,26 @@ public class IngredientControllerTest {
 
         //then
         verify(recipeService, times(1)).findCommandById(anyLong());
+    }
+
+    /**
+     * Test show ingredient.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testShowIngredient() throws Exception {
+        //given
+        IngredientCommand ingredientCommand = new IngredientCommand();
+
+        //when
+        when(ingredientService.findByRecipeIdAndIngredientId(anyLong(), anyLong())).thenReturn(ingredientCommand);
+
+        //then
+        mockMvc.perform(get("/recipe/1/ingredient/2/show"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/show"))
+                .andExpect(model().attributeExists("ingredient"));
     }
 
 }

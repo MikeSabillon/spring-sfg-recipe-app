@@ -1,74 +1,61 @@
 package sabillon.springframework5.recipe.app.data.converters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import sabillon.springframework5.recipe.app.data.commands.CategoryCommand;
 import sabillon.springframework5.recipe.app.data.models.Category;
 
+import static org.junit.Assert.*;
+
 /**
- * The Class CategoryToCategoryCommandTest.
+ * The type Category to category command test.
  */
 public class CategoryToCategoryCommandTest {
 
-	/** The Constant ID_VALUE. */
-	public static final Long ID_VALUE = 1L;
+    private static final Long ID_VALUE = 1L;
 
-	/** The Constant DESCRIPTION. */
-	public static final String DESCRIPTION = "descript";
+    private static final String DESCRIPTION = "descript";
 
-	/** The convter. */
-	CategoryToCategoryCommand convter;
+    private CategoryToCategoryCommand categoryToCategoryCommand;
 
-	/**
-	 * Sets the up.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		convter = new CategoryToCategoryCommand();
-	}
+    /**
+     * Sets up.
+     */
+    @Before
+    public void setUp() {
+        categoryToCategoryCommand = new CategoryToCategoryCommand();
+    }
 
-	/**
-	 * Test null object.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testNullObject() throws Exception {
-		assertNull(convter.convert(null));
-	}
+    /**
+     * Test null object.
+     */
+    @Test
+    public void testNullObject() {
+        assertNull(categoryToCategoryCommand.convert(null));
+    }
 
-	/**
-	 * Test empty object.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void testEmptyObject() throws Exception {
-		assertNotNull(convter.convert(new Category()));
-	}
+    /**
+     * Test empty object.
+     */
+    @Test
+    public void testEmptyObject() {
+        assertNotNull(categoryToCategoryCommand.convert(Category.builder().build()));
+    }
 
-	/**
-	 * Convert.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void convert() throws Exception {
-		Category category = new Category();
-		category.setId(ID_VALUE);
-		category.setDescription(DESCRIPTION);
+    /**
+     * Convert.
+     */
+    @Test
+    public void convert() {
+        CategoryCommand categoryCommand = categoryToCategoryCommand.convert(Category
+                .builder()
+                .id(ID_VALUE)
+                .description(DESCRIPTION)
+                .build());
 
-		CategoryCommand categoryCommand = convter.convert(category);
-
-		assertEquals(ID_VALUE, categoryCommand.getId());
-		assertEquals(DESCRIPTION, categoryCommand.getDescription());
-	}
+        assertNotNull(categoryCommand);
+        assertEquals(ID_VALUE, categoryCommand.getId());
+        assertEquals(DESCRIPTION, categoryCommand.getDescription());
+    }
 
 }

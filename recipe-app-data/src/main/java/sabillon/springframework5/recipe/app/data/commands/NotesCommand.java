@@ -1,18 +1,22 @@
 package sabillon.springframework5.recipe.app.data.commands;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 public class NotesCommand {
 
-	/** The id. */
-	private Long id;
+    /**
+     * The id.
+     */
+    private Long id;
 
-	/** The recipe notes. */
-	private String recipeNotes;
+    /**
+     * The recipe notes.
+     */
+    private String recipeNotes;
 
 }

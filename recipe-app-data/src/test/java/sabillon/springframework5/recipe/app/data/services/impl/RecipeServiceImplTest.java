@@ -22,54 +22,36 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 /**
- * The Class RecipeServiceImplTest.
+ * The type Recipe service impl test.
  */
 public class RecipeServiceImplTest {
 
-    /**
-     * The recipe service.
-     */
+    @Mock
+    private RecipeRepository recipeRepository;
+
+    @Mock
+    private RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
+
     @InjectMocks
     private RecipeServiceImpl recipeService;
 
     /**
-     * The recipe repository.
-     */
-    @Mock
-    private RecipeRepository recipeRepository;
-
-    /**
-     * The Recipe to recipe command.
-     */
-    @Mock
-    private RecipeToRecipeCommand recipeToRecipeCommand;
-
-    /**
-     * The Recipe command to recipe.
-     */
-    @Mock
-    private RecipeCommandToRecipe recipeCommandToRecipe;
-
-    /**
-     * Sets the up.
-     *
-     * @throws Exception the exception
+     * Sets up.
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     /**
-     * Gets the recipe by id test.
-     *
-     * @return the recipe by id test
-     * @throws Exception the exception
+     * Gets recipe by id test.
      */
     @Test
-    public void getRecipeByIdTest() throws Exception {
-        Recipe recipe = new Recipe();
-        recipe.setId(1L);
+    public void getRecipeByIdTest() {
+        Recipe recipe = Recipe.builder().id(1L).build();
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
@@ -82,41 +64,34 @@ public class RecipeServiceImplTest {
     }
 
     /**
-     * Gets the recipes test.
-     *
-     * @return the recipes test
-     * @throws Exception the exception
+     * Gets recipes test.
      */
     @Test
-    public void getRecipesTest() throws Exception {
-        Recipe recipe = new Recipe();
-        HashSet<Recipe> receipesData = new HashSet<>();
-        receipesData.add(recipe);
+    public void getRecipesTest() {
+        Recipe recipe = Recipe.builder().build();
+        HashSet<Recipe> recipesData = new HashSet<>();
+        recipesData.add(recipe);
 
-        when(recipeRepository.findAll()).thenReturn(receipesData);
+        when(recipeRepository.findAll()).thenReturn(recipesData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
 
-        assertEquals(recipes.size(), 1);
+        assertEquals(1, recipes.size());
         verify(recipeRepository, times(1)).findAll();
         verify(recipeRepository, never()).findById(anyLong());
     }
 
     /**
      * Gets recipe command by id test.
-     *
-     * @throws Exception the exception
      */
     @Test
-    public void getRecipeCommandByIdTest() throws Exception {
-        Recipe recipe = new Recipe();
-        recipe.setId(1L);
+    public void getRecipeCommandByIdTest() {
+        Recipe recipe = Recipe.builder().id(1L).build();
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
 
-        RecipeCommand recipeCommand = new RecipeCommand();
-        recipeCommand.setId(1L);
+        RecipeCommand recipeCommand = RecipeCommand.builder().id(1L).build();
 
         when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
 
@@ -129,12 +104,10 @@ public class RecipeServiceImplTest {
 
     /**
      * Test delete by id.
-     *
-     * @throws Exception the exception
      */
     @Test
-    public void testDeleteById() throws Exception {
-        Long idToDelete = Long.valueOf(2L);
+    public void testDeleteById() {
+        Long idToDelete = 2L;
         recipeService.deleteById(idToDelete);
         verify(recipeRepository, times(1)).deleteById(anyLong());
     }

@@ -27,25 +27,22 @@ import sabillon.springframework5.recipe.app.data.models.Recipe;
 import sabillon.springframework5.recipe.app.data.services.RecipeService;
 
 /**
- * The Class IndexControllerTest.
+ * The type Index controller test.
  */
 @AutoConfigureMockMvc
 public class IndexControllerTest {
 
-	/** The index controller. */
-	@InjectMocks
-	private IndexController indexController;
-
-	/** The recipe service. */
-	@Mock
-	private RecipeService recipeService;
-
-	/** The model. */
 	@Mock
 	private Model model;
 
+	@Mock
+	private RecipeService recipeService;
+
+	@InjectMocks
+	private IndexController indexController;
+
 	/**
-	 * Sets the up.
+	 * Sets up.
 	 *
 	 * @throws Exception the exception
 	 */
@@ -55,7 +52,7 @@ public class IndexControllerTest {
 	}
 
 	/**
-	 * Test mock MVC.
+	 * Test mock mvc.
 	 *
 	 * @throws Exception the exception
 	 */
@@ -66,11 +63,8 @@ public class IndexControllerTest {
 	}
 
 	/**
-	 * Gets the index page.
-	 *
-	 * @return the index page
+	 * Gets index page.
 	 */
-	@SuppressWarnings("unchecked")
 	@Test
 	public void getIndexPage() {
 		Set<Recipe> recipes = new HashSet<>();

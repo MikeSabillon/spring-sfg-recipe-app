@@ -1,47 +1,40 @@
-/** The $lock. */
+/**
+ * The $lock.
+ */
 package sabillon.springframework5.recipe.app.data.converters;
-
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Synchronized;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import sabillon.springframework5.recipe.app.data.commands.IngredientCommand;
 import sabillon.springframework5.recipe.app.data.models.Ingredient;
 
+import java.util.Objects;
+
 /**
- * Instantiates a new ingredient to ingredient command.
- *
- * @param uomConverter the uom converter
+ * The type Ingredient to ingredient command.
  */
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
 
-	/** The uom converter. */
-	private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
+    private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
 
-	/**
-	 * Convert.
-	 *
-	 * @param ingredient the ingredient
-	 * @return the ingredient command
-	 */
-	@Synchronized
-	@Nullable
-	@Override
-	public IngredientCommand convert(Ingredient ingredient) {
-		if (ingredient == null) {
-			return null;
-		}
-
-		IngredientCommand ingredientCommand = new IngredientCommand();
-		ingredientCommand.setId(ingredient.getId());
-		ingredientCommand.setAmount(ingredient.getAmount());
-		ingredientCommand.setDescription(ingredient.getDescription());
-		ingredientCommand.setUnitOfMeasure(uomConverter.convert(ingredient.getUom()));
-		return ingredientCommand;
-	}
-
+    @Synchronized
+    @Override
+    public IngredientCommand convert(Ingredient ingredient) {
+        if (Objects.isNull(ingredient.getRecipe())) {
+            log.info("Ingridient does not have recipe {}", ingredient);
+        }
+        return !Objects.isNull(ingredient) && !Objects.isNull(ingredient.getId()) ? IngredientCommand.builder()
+                .id(ingredient.getId())
+                .recipeId(ingredient.getRecipe().getId())
+                .amount(ingredient.getAmount())
+                .description(ingredient.getDescription())
+                .unitOfMeasure(uomConverter.convert(ingredient.getUom()))
+                .build() : null;
+    }
 }
